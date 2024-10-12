@@ -30,14 +30,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee getEmployee(long empId) {
-        System.out.println(" returning employee with id: "+empId);
+        System.out.println(" returning employee with id: " + empId);
         Employee emp = null;
 
-        if(empRepo.findById(empId).isPresent()){
+        if (empRepo.findById(empId).isPresent()) {
             emp = empRepo.findById(empId).get();
-            System.out.println("**** fetching emp from db ****** "+emp.getName());
-        }else {
-            System.out.println(" ****** No emp with "+empId);
+            System.out.println("**** fetching emp from db ****** " + emp.getName());
+        } else {
+            System.out.println(" ****** No emp with " + empId);
         }
         return emp;
     }
