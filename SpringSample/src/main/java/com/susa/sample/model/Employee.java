@@ -19,12 +19,6 @@ public class Employee {
     @Column(name = "address")
     private String address;
 
-/*    public Employee(long id, String name, int age, String address) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.address = address;
-    }*/
 
     public long getId() {
         return id;

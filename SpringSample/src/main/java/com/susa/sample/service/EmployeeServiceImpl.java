@@ -3,7 +3,7 @@ package com.susa.sample.service;
 import com.susa.sample.dto.EmployeeDTO;
 import com.susa.sample.mapper.EmployeeMapper;
 import com.susa.sample.model.Employee;
-import com.susa.sample.repository.EmployeeRopository;
+import com.susa.sample.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
-    EmployeeRopository empRepo;
+    EmployeeRepository empRepo;
     ArrayList<Employee> empList = new ArrayList<Employee>();
     EmployeeMapper empMapper;
 
@@ -33,11 +33,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         System.out.println(" returning employee with id: "+empId);
         Employee emp = null;
 
-        for (Employee employee : empList) {
-            if (employee != null && employee.getId() == empId) {
-                emp = employee;
-                break;
-            }
+        if(empRepo.findById(empId).isPresent()){
+            emp = empRepo.findById(empId).get();
+            System.out.println("**** fetching emp from db ****** "+emp.getName());
+        }else {
+            System.out.println(" ****** No emp with "+empId);
         }
         return emp;
     }
