@@ -1,30 +1,17 @@
-package com.susa.sample.model;
+package com.susa.sample.dto;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "Employee")
-public class Employee {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class EmployeeDTO {
     private long id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "age")
     private int age;
-
-    @Column(name = "address")
     private String address;
 
-/*    public Employee(long id, String name, int age, String address) {
+    public EmployeeDTO(long id, String name, int age, String address) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.address = address;
-    }*/
+    }
 
     public long getId() {
         return id;
