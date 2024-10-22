@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
-public class EmployeeServiceImpl implements EmployeeService {
+public class EmpService implements EmployeeService{
 
     @Autowired
     private EmployeeRepository empRepo;
@@ -19,38 +20,28 @@ public class EmployeeServiceImpl implements EmployeeService {
     ArrayList<Employee> empList = new ArrayList<Employee>();
     EmployeeMapper empMapper;
 
-    public EmployeeServiceImpl() {
-        System.out.println(" ******* EmployeeServiceImpl  ******* ");
+    public EmpService() {
+        System.out.println(" ******** EP service *********");
     }
 
     @Override
     public void addEmployee(EmployeeDTO emp) {
         empMapper = new EmployeeMapper();
         Employee employee = empMapper.mapEmpDTOtoEmp(emp);
-        System.out.println(" adding employee with id: " + employee.getId());
+        System.out.println(" ******** EP service adding employee with id: " + employee.getId());
         empList.add(employee);
-        System.out.println("Inserting emp to DB ******");
+        System.out.println(" ******** EP Inserting emp to DB ******");
         empRepo.save(employee);
-        System.out.println("Added emp to DB ******");
+        System.out.println(" ******** EP Added emp to DB ******");
     }
 
     @Override
-    public Employee getEmployee(long empId) {
-        System.out.println(" returning employee with id: " + empId);
-        Employee emp = null;
-
-        if (empRepo.findById(empId).isPresent()) {
-            emp = empRepo.findById(empId).get();
-            System.out.println("**** fetching emp from db ****** " + emp.getName());
-        } else {
-            System.out.println(" ****** No emp with " + empId);
-        }
-        return emp;
+    public Employee getEmployee(long id) {
+        return null;
     }
 
     @Override
     public List<Employee> getEmployees() {
-        return empRepo.findAll();
+        return empList;
     }
-
 }
