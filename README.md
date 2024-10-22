@@ -1,5 +1,5 @@
-# susa-samples
-susa-samples
+# Springboot Sample
+Springboot Sample
 
 
 Swagger UI -> http://localhost:8080/swagger-ui/index.html
