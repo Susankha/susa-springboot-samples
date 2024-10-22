@@ -12,26 +12,26 @@ import java.util.List;
 @RestController
 public class EmployeeController {
 
-    @Autowired
-    @Qualifier("employeeServiceImpl")
-    EmployeeService employeeService;
+  @Autowired
+  @Qualifier("employeeServiceImpl")
+  EmployeeService employeeService;
 
-    @PostMapping("/")
-    public void addEmployee(@RequestBody EmployeeDTO emp) {
-        System.out.println("Adding employee with id: " + emp.getId());
-        employeeService.addEmployee(emp);
-    }
+  @PostMapping("/")
+  public void addEmployee(@RequestBody EmployeeDTO emp) {
+    System.out.println("Adding employee with id: " + emp.getId());
+    employeeService.addEmployee(emp);
+  }
 
-    @GetMapping("/findbyid/{empId}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable long empId) {
-        System.out.println("******* Getting employee with id: "+empId);
-        return ResponseEntity.ok().body(employeeService.getEmployee(empId));
-    }
+  @GetMapping("/findbyid/{empId}")
+  public ResponseEntity<Employee> getEmployeeById(@PathVariable long empId) {
+    System.out.println("******* Getting employee with id: " + empId);
+    return ResponseEntity.ok().body(employeeService.getEmployee(empId));
+  }
 
-    @GetMapping("/employees")
-    public ResponseEntity<List<Employee>> getEmployees() {
-        System.out.println(" ******* Getting All employees ***********");
-        return ResponseEntity.ok().body(employeeService.getEmployees());
-    }
+  @GetMapping("/employees")
+  public ResponseEntity<List<Employee>> getEmployees() {
+    System.out.println(" ******* Getting All employees ***********");
+    return ResponseEntity.ok().body(employeeService.getEmployees());
+  }
 
 }

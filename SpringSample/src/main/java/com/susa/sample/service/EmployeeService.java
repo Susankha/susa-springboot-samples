@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface EmployeeService {
 
-    void addEmployee(EmployeeDTO emp);
+  void addEmployee(EmployeeDTO emp);
 
-    Employee getEmployee(long id);
+  Employee getEmployee(long id);
 
-    List<Employee> getEmployees();
+  List<Employee> getEmployees();
 }

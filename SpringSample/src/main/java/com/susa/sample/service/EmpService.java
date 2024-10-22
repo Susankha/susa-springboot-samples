@@ -12,36 +12,36 @@ import java.util.List;
 
 
 @Service
-public class EmpService implements EmployeeService{
+public class EmpService implements EmployeeService {
 
-    @Autowired
-    private EmployeeRepository empRepo;
+  @Autowired
+  private EmployeeRepository empRepo;
 
-    ArrayList<Employee> empList = new ArrayList<Employee>();
-    EmployeeMapper empMapper;
+  ArrayList<Employee> empList = new ArrayList<Employee>();
+  EmployeeMapper empMapper;
 
-    public EmpService() {
-        System.out.println(" ******** EP service *********");
-    }
+  public EmpService() {
+    System.out.println(" ******** EP service *********");
+  }
 
-    @Override
-    public void addEmployee(EmployeeDTO emp) {
-        empMapper = new EmployeeMapper();
-        Employee employee = empMapper.mapEmpDTOtoEmp(emp);
-        System.out.println(" ******** EP service adding employee with id: " + employee.getId());
-        empList.add(employee);
-        System.out.println(" ******** EP Inserting emp to DB ******");
-        empRepo.save(employee);
-        System.out.println(" ******** EP Added emp to DB ******");
-    }
+  @Override
+  public void addEmployee(EmployeeDTO emp) {
+    empMapper = new EmployeeMapper();
+    Employee employee = empMapper.mapEmpDTOtoEmp(emp);
+    System.out.println(" ******** EP service adding employee with id: " + employee.getId());
+    empList.add(employee);
+    System.out.println(" ******** EP Inserting emp to DB ******");
+    empRepo.save(employee);
+    System.out.println(" ******** EP Added emp to DB ******");
+  }
 
-    @Override
-    public Employee getEmployee(long id) {
-        return null;
-    }
+  @Override
+  public Employee getEmployee(long id) {
+    return null;
+  }
 
-    @Override
-    public List<Employee> getEmployees() {
-        return empList;
-    }
+  @Override
+  public List<Employee> getEmployees() {
+    return empList;
+  }
 }
