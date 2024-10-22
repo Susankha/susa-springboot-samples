@@ -35,9 +35,5 @@ public class DemoApplication {
     DemoApplication da = applicationContext.getBean(DemoApplication.class);
     System.out.println(" ***************** da " + da.hashCode());
 
-
- /*       for (String bean : beanDefinitionNames){
-            System.out.println(" Bean : "+bean);
-        }*/
   }
 }
