@@ -1,6 +1,7 @@
 package com.susa.sample.service;
 
 import com.susa.sample.dto.EmployeeDTO;
+import com.susa.sample.exception.ResourceNotFoundException;
 import com.susa.sample.mapper.EmployeeMapper;
 import com.susa.sample.model.Employee;
 import com.susa.sample.repository.EmployeeRepository;
@@ -35,15 +36,15 @@ public class EmployeeServiceImpl implements EmployeeService {
   }
 
   @Override
-  public Employee getEmployee(long empId) {
-    System.out.println(" returning employee with id: " + empId);
+  public Employee getEmployee(long empId) throws ResourceNotFoundException {
     Employee emp = null;
 
     if (empRepo.findById(empId).isPresent()) {
       emp = empRepo.findById(empId).get();
       System.out.println("**** fetching emp from db ****** " + emp.getName());
     } else {
-      System.out.println(" ****** No emp with " + empId);
+      System.out.println("**** employee not found with id:" + empId);
+      throw new ResourceNotFoundException("employee not found with id:" + empId);
     }
     return emp;
   }
