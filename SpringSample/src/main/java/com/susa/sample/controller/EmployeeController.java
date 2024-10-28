@@ -1,6 +1,7 @@
 package com.susa.sample.controller;
 
 import com.susa.sample.dto.EmployeeDTO;
+import com.susa.sample.exception.ResourceNotFoundException;
 import com.susa.sample.model.Employee;
 import com.susa.sample.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,13 @@ public class EmployeeController {
   @GetMapping("/findbyid/{empId}")
   public ResponseEntity<Employee> getEmployeeById(@PathVariable long empId) {
     System.out.println("******* Getting employee with id: " + empId);
-    return ResponseEntity.ok().body(employeeService.getEmployee(empId));
+    Employee employee = null;
+    employee = employeeService.getEmployee(empId);
+
+    if (employee == null) {
+      throw new ResourceNotFoundException("Employee not found with id:" + empId);
+    }
+    return ResponseEntity.ok().body(employee);
   }
 
   @GetMapping("/employees")
