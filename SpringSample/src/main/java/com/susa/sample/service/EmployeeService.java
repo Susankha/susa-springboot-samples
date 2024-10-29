@@ -2,7 +2,6 @@ package com.susa.sample.service;
 
 import com.susa.sample.dto.EmployeeDTO;
 import com.susa.sample.model.Employee;
-
 import java.util.List;
 
 public interface EmployeeService {
