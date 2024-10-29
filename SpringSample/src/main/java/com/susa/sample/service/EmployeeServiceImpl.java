@@ -5,20 +5,18 @@ import com.susa.sample.exception.ResourceNotFoundException;
 import com.susa.sample.mapper.EmployeeMapper;
 import com.susa.sample.model.Employee;
 import com.susa.sample.repository.EmployeeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-  @Autowired
-  private EmployeeRepository empRepo;
-
   ArrayList<Employee> empList = new ArrayList<Employee>();
   EmployeeMapper empMapper;
+  @Autowired
+  private EmployeeRepository empRepo;
 
   public EmployeeServiceImpl() {
     System.out.println(" ******* EmployeeServiceImpl  ******* ");
@@ -51,6 +49,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
   @Override
   public List<Employee> getEmployees() {
+    List<Employee> employees = null;
+    if (!empRepo.findAll().isEmpty()) {
+      employees = empRepo.findAll();
+      System.out.println("**** fetching employees from db ****** " + employees.size());
+    } else {
+      System.out.println("**** employees list is empty ****");
+      throw new ResourceNotFoundException("employees list is empty");
+    }
     return empRepo.findAll();
   }
 
