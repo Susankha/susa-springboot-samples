@@ -20,19 +20,17 @@ public class GlobalExceptionHandler {
   @ResponseStatus(value = HttpStatus.NOT_FOUND)
   public ErrorMessage handleResourceNotFoundException(ResourceNotFoundException ex) {
 
-    return new ErrorMessage(HttpStatus.NOT_FOUND.value(), new Date(), ex.getMessage(),
-        "Resource Not Found");
+    return new ErrorMessage(
+        HttpStatus.NOT_FOUND.value(), new Date(), ex.getMessage(), "Resource Not Found");
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<Map<String, List<String>>> handleMethodArgumentNotValid(
       MethodArgumentNotValidException ex, WebRequest request) {
-    List<String> errors = ex.getBindingResult().getFieldErrors().stream()
-        .map(FieldError::getDefaultMessage).toList();
+    List<String> errors =
+        ex.getBindingResult().getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
     Map<String, List<String>> errorResponse = new LinkedHashMap<>();
     errorResponse.put("errors", errors);
     return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
   }
-
 }
-

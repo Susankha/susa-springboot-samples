@@ -1,8 +1,6 @@
 package $org.susa.example;
 
-/**
- * Hello world!
- */
+/** Hello world! */
 public class App {
 
   public static void main(String[] args) {

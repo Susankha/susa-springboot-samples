@@ -15,8 +15,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
   ArrayList<Employee> empList = new ArrayList<Employee>();
   EmployeeMapper empMapper;
-  @Autowired
-  private EmployeeRepository empRepo;
+  @Autowired private EmployeeRepository empRepo;
 
   public EmployeeServiceImpl() {
     System.out.println(" ******* EmployeeServiceImpl  ******* ");
@@ -59,5 +58,4 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
     return empRepo.findAll();
   }
-
 }

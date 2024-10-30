@@ -9,12 +9,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class EmpService implements EmployeeService {
 
-  @Autowired
-  private EmployeeRepository empRepo;
+  @Autowired private EmployeeRepository empRepo;
 
   ArrayList<Employee> empList = new ArrayList<Employee>();
   EmployeeMapper empMapper;
