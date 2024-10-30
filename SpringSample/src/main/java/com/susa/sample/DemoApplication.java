@@ -34,6 +34,5 @@ public class DemoApplication {
 
     DemoApplication da = applicationContext.getBean(DemoApplication.class);
     System.out.println(" ***************** da " + da.hashCode());
-
   }
 }

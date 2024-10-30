@@ -10,5 +10,4 @@ public class MyConfig {
   public MyBean myBean() {
     return new MyBean();
   }
-
 }

@@ -48,5 +48,4 @@ public class EmployeeController {
     System.out.println(" ******* Getting All employees ***********");
     return ResponseEntity.ok().body(employeeService.getEmployees());
   }
-
 }
