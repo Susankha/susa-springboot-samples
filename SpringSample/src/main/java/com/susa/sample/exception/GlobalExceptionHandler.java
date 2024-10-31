@@ -12,16 +12,31 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
   @ExceptionHandler(value = ResourceNotFoundException.class)
   @ResponseStatus(value = HttpStatus.NOT_FOUND)
-  public ErrorMessage handleResourceNotFoundException(ResourceNotFoundException ex) {
+  public ResponseEntity<ErrorMessage> handleResourceNotFoundException(
+      ResourceNotFoundException ex) {
+    ErrorMessage errorMessage =
+        new ErrorMessage(
+            HttpStatus.NOT_FOUND.value(), new Date(), ex.getMessage(), "Resource Not Found");
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+  }
 
-    return new ErrorMessage(
-        HttpStatus.NOT_FOUND.value(), new Date(), ex.getMessage(), "Resource Not Found");
+  @ExceptionHandler(value = NoResourceFoundException.class)
+  @ResponseStatus(value = HttpStatus.NOT_FOUND)
+  public ResponseEntity<ErrorMessage> handleNoResourceFoundException(NoResourceFoundException ex) {
+    ErrorMessage errorMessage =
+        new ErrorMessage(
+            HttpStatus.NOT_FOUND.value(),
+            new Date(),
+            ex.getMessage(),
+            "Resource Not Found on path " + "/" + ex.getResourcePath());
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
