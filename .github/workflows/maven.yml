@@ -28,6 +28,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B clean install -DskipTests --file SpringSample/pom.xml
+      run: mvn -B clean install --file SpringSample/pom.xml
       #mvn clean install --file pom.xml
       #mvn -B clean install -DskipTests
