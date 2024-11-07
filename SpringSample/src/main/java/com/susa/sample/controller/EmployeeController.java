@@ -1,7 +1,6 @@
 package com.susa.sample.controller;
 
 import com.susa.sample.dto.EmployeeDTO;
-import com.susa.sample.exception.ResourceNotFoundException;
 import com.susa.sample.model.Employee;
 import com.susa.sample.service.EmployeeService;
 import jakarta.validation.Valid;
@@ -34,12 +33,7 @@ public class EmployeeController {
   @GetMapping("/findbyid/{empId}")
   public ResponseEntity<Employee> getEmployeeById(@PathVariable long empId) {
     System.out.println("******* Getting employee with id: " + empId);
-    Employee employee = null;
-    employee = employeeService.getEmployee(empId);
-
-    if (employee == null) {
-      throw new ResourceNotFoundException("Employee not found with id:" + empId);
-    }
+    Employee employee = employeeService.getEmployee(empId);
     return ResponseEntity.ok().body(employee);
   }
 
